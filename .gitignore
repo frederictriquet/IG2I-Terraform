@@ -1,0 +1,67 @@
+# Terraform State Files
+# These contain sensitive data and the current infrastructure state
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Terraform Variable Files
+# May contain sensitive credentials and secrets
+*.tfvars
+*.tfvars.json
+
+# Override files
+# Used for local overrides that shouldn't be shared
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform Directories
+.terraform/
+.terraform.lock.hcl
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files except example files
+!example.tfvars
+
+# CLI configuration files
+.terraformrc
+terraform.rc
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment Files
+.env
+.env.local
+.envrc
+
+# AWS Credentials (should never be in repo)
+credentials
+config
+
+# Backup files
+*.bak
+
+# Marp Build Outputs
+cours.html
+cours-slides.pdf
+build/
+
+# Node.js Dependencies
+node_modules/
+package-lock.json
+
+# Mirror SSH keys (should never be committed)
+mirror_key
+mirror_key.pub
+
+.venv

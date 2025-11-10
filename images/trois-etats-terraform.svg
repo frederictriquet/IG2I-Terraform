@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="240" xmlns="http://www.w3.org/2000/svg">
+  <!-- État souhaité -->
+  <rect x="30" y="50" width="200" height="100" fill="#e1f5ff" stroke="#01579b" stroke-width="3" rx="10"/>
+  <text x="130" y="90" text-anchor="middle" font-size="18" font-weight="bold" fill="#01579b">État souhaité</text>
+  <text x="130" y="115" text-anchor="middle" font-size="14" fill="#01579b">(Fichiers .tf)</text>
+
+  <!-- État connu -->
+  <rect x="310" y="50" width="200" height="100" fill="#fff9c4" stroke="#f57f17" stroke-width="3" rx="10"/>
+  <text x="410" y="90" text-anchor="middle" font-size="18" font-weight="bold" fill="#f57f17">État connu</text>
+  <text x="410" y="115" text-anchor="middle" font-size="14" fill="#f57f17">(terraform.tfstate)</text>
+
+  <!-- État réel -->
+  <rect x="590" y="50" width="200" height="100" fill="#c8e6c9" stroke="#1b5e20" stroke-width="3" rx="10"/>
+  <text x="690" y="90" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e20">État réel</text>
+  <text x="690" y="115" text-anchor="middle" font-size="14" fill="#1b5e20">(Infrastructure AWS)</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#01579b" />
+    </marker>
+    <marker id="arroworange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f57f17" />
+    </marker>
+    <marker id="arrowgreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1b5e20" />
+    </marker>
+  </defs>
+
+  <!-- Flèche: État souhaité -> État connu -->
+  <line x1="230" y1="100" x2="310" y2="100" stroke="#01579b" stroke-width="2" marker-end="url(#arrowblue)"/>
+  <text x="270" y="90" text-anchor="middle" font-size="12" fill="#01579b" font-style="italic">terraform plan</text>
+
+  <!-- Flèche: État connu -> État réel -->
+  <line x1="510" y1="85" x2="590" y2="85" stroke="#f57f17" stroke-width="2" marker-end="url(#arroworange)"/>
+  <text x="550" y="75" text-anchor="middle" font-size="12" fill="#f57f17" font-style="italic">terraform apply</text>
+
+  <!-- Flèche: État réel -> État connu (refresh) -->
+  <line x1="590" y1="115" x2="510" y2="115" stroke="#1b5e20" stroke-width="2" marker-end="url(#arrowgreen)"/>
+  <text x="550" y="135" text-anchor="middle" font-size="12" fill="#1b5e20" font-style="italic">refresh</text>
+</svg>

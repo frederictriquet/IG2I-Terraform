@@ -1,0 +1,28 @@
+{
+  "name": "terraform-training",
+  "version": "1.0.0",
+  "description": "Terraform training materials with Marp presentations",
+  "scripts": {
+    "build": "marp cours.md -o cours.html",
+    "build:watch": "marp cours.md -o cours.html --watch",
+    "build:dir": "mkdir -p build && marp cours.md -o build/index.html && touch build/.nojekyll",
+    "build:pdf": "marp cours.md --pdf --allow-local-files -o cours-slides.pdf",
+    "build:all": "npm run build && npm run build:pdf",
+    "preview": "marp cours.md -o cours.html --preview",
+    "serve": "marp cours.md -s"
+  },
+  "keywords": [
+    "terraform",
+    "training",
+    "marp",
+    "slides"
+  ],
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/terraform-training.git"
+  },
+  "private": true
+}
