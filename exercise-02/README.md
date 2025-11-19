@@ -10,20 +10,20 @@
 
 ## Prérequis
 
-### 1. Compte AWS
+<!-- ### 1. Compte AWS -->
 
-Vous devez avoir accès à un compte AWS. Deux options :
+ <!-- Deux options : -->
 
-**Option A : AWS Academy (recommandée pour les étudiants)**
+<!-- **Option A : AWS Academy (recommandée pour les étudiants)** -->
 - Connectez-vous à AWS Academy
 - Lancez votre Learner Lab
 - Cliquez sur "AWS Details" puis "Show" à côté de "AWS CLI"
 - Copiez les credentials (aws_access_key_id, aws_secret_access_key, aws_session_token)
 
-**Option B : Compte AWS personnel**
+<!-- **Option B : Compte AWS personnel**
 - Créez un utilisateur IAM avec les permissions S3
-- Générez des access keys pour ce compte
-
+- Générez des access keys pour ce compte -->
+<!-- 
 ### 2. Configuration des credentials AWS
 
 Créez le fichier `~/.aws/credentials` :
@@ -43,7 +43,7 @@ region = eu-west-3
 output = json
 ```
 
-### 3. Vérification
+### 3. Vérification -->
 
 Testez votre configuration :
 
@@ -69,7 +69,7 @@ Amazon S3 (Simple Storage Service) est le service de stockage objet d'AWS. C'est
    - Le provider AWS (https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
    - Le provider random (comme dans l'exercice précédent)
 
-3. Configurez le provider AWS pour utiliser la région `eu-west-3` (Paris)
+3. Configurez le provider AWS pour utiliser la région `eu-west-3` (Paris) ou la même région que l'EC2 qui vous sert de passerelle.
 
 4. Créez une ressource `random_id` avec `byte_length = 4` pour générer un suffixe
 
@@ -237,10 +237,3 @@ Vérifiez votre fichier `~/.aws/credentials` ou vos variables d'environnement.
 ### Erreur lors du destroy : "BucketNotEmpty"
 Vous devez vider le bucket avant de le détruire. Utilisez `aws s3 rm --recursive`.
 
-## Pour aller plus loin
-
-- Explorez d'autres options de buckets S3 : lifecycle rules, bucket policies, CORS
-- Créez plusieurs buckets avec un `count` ou `for_each`
-- Ajoutez une ressource `aws_s3_object` pour uploader un fichier via Terraform
-- Découvrez les [data sources](https://developer.hashicorp.com/terraform/language/data-sources) pour lire des ressources existantes
-- Explorez le [S3 backend](https://developer.hashicorp.com/terraform/language/settings/backends/s3) pour stocker le state dans S3

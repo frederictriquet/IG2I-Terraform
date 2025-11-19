@@ -19,12 +19,12 @@ Les **locals** (valeurs locales) permettent de résoudre ces problèmes en défi
 
 ## Différence entre variables et locals
 
-| Aspect | Variables (`var.*`) | Locals (`local.*`) |
-|--------|---------------------|-------------------|
-| **Source** | Définies par l'utilisateur (inputs) | Calculées dans le code |
-| **Modifiables** | Oui (via tfvars, -var, etc.) | Non (fixes après calcul) |
-| **Usage** | Configuration externe | Logique interne |
-| **Exemple** | Région AWS, nom de projet | Nom complet du bucket, tags fusionnés |
+| Aspect          | Variables (`var.*`)                 | Locals (`local.*`)                    |
+| --------------- | ----------------------------------- | ------------------------------------- |
+| **Source**      | Définies par l'utilisateur (inputs) | Calculées dans le code                |
+| **Modifiables** | Oui (via tfvars, -var, etc.)        | Non (fixes après calcul)              |
+| **Usage**       | Configuration externe               | Logique interne                       |
+| **Exemple**     | Région AWS, nom de projet           | Nom complet du bucket, tags fusionnés |
 
 **Règle simple** :
 - Les **variables** sont des **inputs** (ce que l'utilisateur fournit)
@@ -307,24 +307,16 @@ locals {
 
 2. **Principe DRY (Don't Repeat Yourself)**
    - Comment les locals aident-ils à respecter ce principe ?
-   - Donnez un exemple de redondance que vous avez éliminé dans cet exercice.
+   - Donnez un exemple de redondance que vous avez éliminée dans cet exercice.
 
-3. **Lisibilité vs Concision**
-   - Est-ce que plus de locals = meilleur code ?
-   - Quand est-ce qu'un local rend le code **plus** complexe au lieu de le simplifier ?
-
-4. **Ordre de calcul**
+3. **Ordre de calcul**
    - Un local peut-il référencer un autre local ?
    - Un local peut-il référencer une ressource ?
    - Testez dans `terraform console` : `local.bucket_name` vs `aws_s3_bucket.my_bucket.id`
 
-5. **Locals et State**
+4. **Locals et State**
    - Les locals apparaissent-ils dans le `terraform.tfstate` ?
    - Pourquoi (pas) ?
-
-6. **Comparaison avec d'autres outils**
-   - Comment les locals Terraform se comparent-ils aux facts Ansible ?
-   - Quelle est la différence fondamentale ?
 
 ## Problèmes courants
 
@@ -352,11 +344,11 @@ Ne créez pas de locals pour tout ! Utilisez-les uniquement pour :
 
 ## Récapitulatif
 
-| Concept | Utilisation |
-|---------|-------------|
+| Concept       | Utilisation                         |
+| ------------- | ----------------------------------- |
 | **Variables** | Inputs configurables de l'extérieur |
-| **Locals** | Valeurs calculées en interne |
-| **Outputs** | Valeurs exposées à l'extérieur |
+| **Locals**    | Valeurs calculées en interne        |
+| **Outputs**   | Valeurs exposées à l'extérieur      |
 
 Pensez à cette analogie avec une fonction :
 ```

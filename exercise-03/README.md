@@ -43,7 +43,7 @@ Les **variables** Terraform permettent de rendre le code paramétrable et réuti
 variable "aws_region" {
   description = "AWS region where resources will be created"
   type        = string
-  default     = "eu-west-3"
+  default     = "eu-west-3" # ou autre, selon ce que vous avez choisi précédemment
 }
 ```
 
@@ -256,32 +256,6 @@ terraform plan -var-file="production.tfvars"
 terraform plan -var-file="production.tfvars" -var="environment=Override"
 ```
 
-## Questions de réflexion
-
-1. **Quand utiliser des variables ?**
-   - Quelles valeurs méritent d'être des variables ?
-   - Quand est-ce qu'une valeur peut rester codée en dur ?
-
-2. **Valeurs par défaut**
-   - Quand faut-il fournir une valeur par défaut ?
-   - Quand est-il préférable de rendre une variable obligatoire (pas de default) ?
-
-3. **Organisation des fichiers**
-   - Pourquoi séparer `variables.tf`, `main.tf` et `outputs.tf` ?
-   - Quels sont les avantages de cette organisation ?
-
-4. **Fichiers .tfvars**
-   - Quels fichiers `.tfvars` doit-on commit dans Git ?
-   - Lesquels doit-on ajouter au `.gitignore` ? Pourquoi ?
-
-5. **Ressources conditionnelles**
-   - Comment feriez-vous pour créer 0, 1 ou plusieurs ressources selon une variable ?
-   - Quels sont les cas d'usage du `count` avec des conditions ?
-
-6. **Comparaison avec Ansible**
-   - Comment les variables Terraform se comparent-elles aux variables Ansible ?
-   - Quelle approche préférez-vous et pourquoi ?
-
 ## Problèmes courants
 
 ### Erreur : "No value for required variable"
@@ -295,10 +269,3 @@ Vérifiez que vous utilisez `var.nom_variable` et non `nom_variable`.
 
 ### Le fichier .tfvars n'est pas chargé
 Seul `terraform.tfvars` est chargé automatiquement. Les autres fichiers nécessitent `-var-file=`.
-
-## Pour aller plus loin
-
-- Explorez les types complexes : `list`, `object`, `set`, `tuple`
-- Découvrez les [variables sensibles](https://developer.hashicorp.com/terraform/language/values/variables#suppressing-values-in-cli-output)
-- Apprenez à utiliser les [locals](https://developer.hashicorp.com/terraform/language/values/locals) (prochain exercice !)
-- Explorez les [variable definitions files](https://developer.hashicorp.com/terraform/language/values/variables#variable-definitions-tfvars-files)
