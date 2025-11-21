@@ -20,5 +20,5 @@ Les exercices se construisent progressivement les uns sur les autres. Complétez
 * Exercice 05 : Outputs et Data Sources pour interroger l'infrastructure existante
 * Exercice 06 : Count et For-Each pour créer plusieurs ressources similaires
 * Exercice 07 : Ressources conditionnelles et blocs dynamic pour une infrastructure flexible
-* Exercice 99 : Projet final intégrant tous les concepts appris
+* Exercice 99 : Guide de référence sur des concepts avancés de Terraform non couverts dans les autres exercices
 

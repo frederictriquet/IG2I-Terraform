@@ -26,6 +26,8 @@ section::after {
 
 IG2I - 2025 - Frédéric Triquet
 
+https://frederictriquet.github.io/IG2I-Terraform/
+
 ---
 
 <style scoped>
@@ -35,6 +37,10 @@ IG2I - 2025 - Frédéric Triquet
   gap: 2rem;
 }
 </style>
+
+## Déroulement de la journée
+
+  Cours puis TP, ce matin et cet après-midi
 
 ## Table des matières
 
@@ -57,10 +63,6 @@ IG2I - 2025 - Frédéric Triquet
 </div>
 </div>
 
-## Déroulement de la journée
-
-  Cours puis TP, ce matin et cet après-midi
-
 ---
 
 # 1. Introduction à l'Infrastructure en tant que Code
@@ -73,7 +75,6 @@ L'Infrastructure en tant que Code est la pratique de gestion et d'approvisionnem
 
 <!--
 du code = des fichiers suffisamment simples pour être lus et écrits par l'Homme / suffisamment structurés pour être compris par la machine -->
-
 
 
 ### Avantages clés de l'IaC
@@ -91,10 +92,10 @@ du code = des fichiers suffisamment simples pour être lus et écrits par l'Homm
 ## Évolution : Configuration manuelle
 
 **Années 1990-2000**
+- Les infrastructures sont généralement de taille modeste
 - Pas de cloud
 - Pas de virtualisation
 - Pas de conteneurs
-- Les infrastructures sont généralement de taille modeste
 - Configuration manuelle via SSH/RDP
 - Documentation dans des wikis → Risques de dérive et d'incohérence
 
@@ -110,26 +111,24 @@ au fil des ans : augmentation de la puissance et baisse des coûts
 ## Évolution : Gestion de configuration
 
 **Années 2000-2010**
+- La taille des infrastructures augmente, les coûts baissent
 - Pas de cloud
-- Début de la virtualisation
+- Début de la virtualisation en prod
 - Pas de conteneurs
-- La taille des infrastructures augmente
 - Outils : Puppet, Chef, Ansible
 - Automatisation de la configuration
 - Focus sur la configuration logicielle
 
-<!--
-début de la virtu pour de la prod
 
--->
 ---
 
 ## Évolution : Infrastructure as Code
 
 **Années 2010-aujourd'hui**
+- Explosion de la taille des infrastructures
 - Début du cloud
 - Début des conteneurs
-- Explosion de la taille des infrastructures et de la diversité de leurs composants
+- Les composants d'infrastructure (cloud) se diversifient
 - Outils : Terraform, CloudFormation
 - Cycle de vie complet de l'infrastructure
 
@@ -184,31 +183,6 @@ Il permet de définir des ressources cloud et on-premise dans des fichiers de co
 - ❌ Connaissances dans la tête des gens
 - ❌ Pas de piste d'audit
 
-<!-- ---
-
-## Solution Terraform
-
-```hcl
-resource "aws_instance" "web" {
-  ami           = "ami-0c55b159cbfafe1f0"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "WebServer"
-  }
-}
-``` -->
-<!-- 
----
-
-## Avantages Terraform
-
-- ✅ Versionné dans Git
-- ✅ Une commande : `terraform apply`
-- ✅ Documenté dans le code
-- ✅ Scalable (1 ou 100 instances)
-- ✅ Outils qui analysent le code terraform
- -->
 ---
 
 ## Approche 2 : Scripts shell
@@ -302,15 +276,15 @@ points communs : IaC, HashiCorp
 |              | Ansible                   | Terraform                              |
 | ------------ | ------------------------- | -------------------------------------- |
 | **Objectif** | Configuration de serveurs | Provisionnement de ressources          |
+| **Approche** | Push (SSH)                | API-based                              |
 | **Langage**  | YAML                      | HCL (Hashicorp Configuration Language) |
 | **État**     | Sans état                 | Avec état                              |
-| **Approche** | Push (SSH)                | API-based                              |
 
 ⚠️ Il y a des actions réalisables avec les deux outils
 
 ---
 
-## Exemple : Ansible
+## Exemple : avec Ansible
 
 ```yaml
 - name: Provision EC2 instance
@@ -322,26 +296,6 @@ points communs : IaC, HashiCorp
         instance_type: t2.micro
         image: ami-0c55b159cbfafe1f0
         region: us-east-1
-```
-
----
-
-## Exemple : Terraform
-
-```hcl
-resource "aws_instance" "web" {
-  ami           = "ami-0c55b159cbfafe1f0"
-  instance_type = "t2.micro"
-  key_name      = "mykey"
-
-  tags = {
-    Name = "WebServer"
-  }
-}
-
-output "instance_ip" {
-  value = aws_instance.web.public_ip
-}
 ```
 
 ---
@@ -375,7 +329,6 @@ output "instance_ip" {
 - Configuration de logiciels sur serveurs existants
 - Déploiement d'applications
 - Commandes ad-hoc
-- Gestion de fichiers de configuration
 - Orchestration multi-étapes
 
 ➡️ Comment configurer ces serveurs ?
@@ -423,7 +376,7 @@ ansible-playbook -i inventory.json configure.yml
 
 ---
 
-## Providers (Fournisseurs)
+## Providers
 
 Les providers sont des plugins permettant à Terraform d'interagir avec les APIs.
 
@@ -450,7 +403,7 @@ provider "google" {
 
 ---
 
-## Resources (Ressources)
+## Resources
 
 Les ressources sont l'élément central de Terraform.
 Elles sont fournies par les providers.
@@ -476,7 +429,7 @@ resource "<span class="highlight-red">aws_instance</span>" "<span class="highlig
   }
 }
 
-# Référencer une autre ressource
+# Référencer l'instance web dans la définition de l'Elastic IP
 resource "aws_eip" "web_ip" {
   instance = <span class="highlight-red">aws_instance</span>.<span class="highlight-blue">web</span>.id
 }
@@ -484,7 +437,7 @@ resource "aws_eip" "web_ip" {
 
 ---
 
-## Data Sources (Sources de données)
+## Data Sources
 
 Récupérer et utiliser des informations sur des ressources existantes.
 
@@ -559,7 +512,7 @@ environment   = "prod"
 
 ---
 
-## Outputs (Sorties)
+## Outputs
 
 Afficher des informations après l'exécution.
 
@@ -584,7 +537,7 @@ instance_id = "i-0abcd1234efgh5678"
 
 ---
 
-## State (État)
+## State
 
 Le fichier `terraform.tfstate` est la base de données de Terraform :
 - IDs des ressources
@@ -596,9 +549,9 @@ Terraform :
 - Sait exactement ce qui existe
 - Compare facilement le code et le _state_ : planification rapide
 
-⛔ Ne pas modifier l'infrastructure par un autre moyen
-
 ⛔ Ne pas modifier le _state_ soi-même
+
+⛔ Ne pas modifier l'infrastructure par un autre moyen
 
 ---
 
@@ -654,12 +607,17 @@ $ terraform apply  # Aucun changement
 
 # TP
 
+https://github.com/frederictriquet/IG2I-Terraform
+
+- Exercices 0 à 7
+- Exercice 99
+
 ---
 
 ## Un point sur l'organisation des fichiers
 
-- Seule l'extension est vraiment importante (`.tf`)
 - Il n'y a pas d'ordre à respecter (puisque c'est **déclaratif**)
+- Seule l'extension est vraiment importante (`.tf`)
 - Terraform lit tous les fichiers du répertoire courant, retrouve les providers déclarés, les définitions de variables, les `locals`, les ressources, les outputs, et construit un arbre de dépendances pour savoir dans quel ordre il faut procéder
 - **Conclusion:** on peut tout écrire dans 1 seul fichier `.tf`, **mais** on préférera répartir les éléments dans des fichiers avec des noms qui ont du sens
 
@@ -683,12 +641,13 @@ $ terraform apply  # Aucun changement
 
 ```
 terraform init      # Initialiser
-terraform fmt       # Formater
-terraform validate  # Valider
 terraform plan      # Voir changements
 terraform apply     # Appliquer
-terraform output    # Voir outputs
 terraform destroy   # Détruire
+terraform output    # Voir outputs
+
+terraform fmt       # Formater
+terraform validate  # Valider
 ```
 
 ---
@@ -762,6 +721,8 @@ terraform apply -var="instance_type=t2.small"
 Détruit toutes les ressources gérées.
 
 ```bash
+terraform destroy
+
 # Détruire une ressource spécifique
 terraform destroy -target=aws_instance.web
 ```
@@ -887,7 +848,6 @@ resource "aws_instance" "web" {
 - ✅ Réutilisabilité du code
 - ✅ Organisation
 - ✅ Encapsulation
-- ✅ Contrôle de version des composants
 
 ---
 
@@ -965,21 +925,23 @@ locals {
   }
 }
 ```
+⚠️ ```locals``` avec 's' ⚠️
 </div>
 <div>
 
-```hcl
+<pre>
 # Utilisation
 resource "aws_s3_bucket" "data" {
-  bucket = "${local.name_prefix}-data"
-  tags   = local.common_tags
+  bucket = "<span class="highlight-green">${</span><span class="highlight-red">local</span>.<span class="highlight-blue">name_prefix</span><span class="highlight-green">}</span>-data"
+  tags   = <span class="highlight-red">local</span>.<span class="highlight-blue">common_tags</span>
 }
 
 resource "aws_s3_bucket" "logs" {
-  bucket = "${local.name_prefix}-logs"
+  bucket = "<span class="highlight-green">${</span><span class="highlight-red">local</span>.<span class="highlight-blue">name_prefix</span><span class="highlight-green">}</span>-logs"
   tags   = local.common_tags
 }
-```
+</pre>
+⚠️ ```local``` sans 's' ⚠️
 </div>
 </div>
 
@@ -1027,12 +989,10 @@ resource "aws_instance" "server" {
 ```hcl
 resource "aws_instance" "web" {
   ami = var.ami_id
-  instance_type = var.environment == "production" ? \
-                  "t2.large" : "t2.micro"
+  instance_type = var.environment == "production" ? "t2.large" : "t2.micro"
 
   tags = {
-    Name = var.environment == "production" ? \
-           "prod-web" : "dev-web"
+    Name = var.environment == "production" ? "prod-web" : "dev-web"
   }
 }
 ```
