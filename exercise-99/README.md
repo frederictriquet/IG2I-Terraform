@@ -832,7 +832,7 @@ terraformer import aws --resources=s3,ec2_instance,vpc --regions=eu-west-3
 - **Pas de génération automatique** (avant Terraform 1.5) : vous devez écrire la config manuellement
 - **Attributs par défaut** : certains attributs peuvent avoir des valeurs par défaut différentes
 - **Ressources imbriquées** : certaines ressources nécessitent plusieurs imports
-- **Pas de rollback** : l'import modifie le state, faites une backup avant !
+- **Pas de rollback** : l'import modifie le state, faites un backup avant !
 
 ### Bonnes pratiques
 

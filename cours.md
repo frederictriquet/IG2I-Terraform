@@ -352,6 +352,10 @@ Ansible → Configurer l'infrastructure
   └─ Déployer le code
 ```
 
+Voir :
+- `null_resource`, `triggers`, `local-exec`.
+- Exercice 99 partie 7
+
 ---
 
 ## Workflow combiné
