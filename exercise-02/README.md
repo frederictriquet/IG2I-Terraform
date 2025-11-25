@@ -39,7 +39,7 @@ Créez le fichier `~/.aws/config` :
 
 ```ini
 [default]
-region = eu-west-3
+region = us-east-1
 output = json
 ```
 
@@ -69,7 +69,7 @@ Amazon S3 (Simple Storage Service) est le service de stockage objet d'AWS. C'est
    - Le provider AWS (https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
    - Le provider random (comme dans l'exercice précédent)
 
-3. Configurez le provider AWS pour utiliser la région `eu-west-3` (Paris) ou la même région que l'EC2 qui vous sert de passerelle.
+3. Configurez le provider AWS pour utiliser la région `us-east-1` (Paris) ou la même région que l'EC2 qui vous sert de passerelle.
 
 4. Créez une ressource `random_id` avec `byte_length = 4` pour générer un suffixe
 

@@ -82,7 +82,7 @@ resource "aws_s3_bucket" "multiple" {
 variable "aws_region" {
   description = "AWS region"
   type        = string
-  default     = "eu-west-3"
+  default     = "us-east-1"
 }
 
 variable "bucket_prefix" {

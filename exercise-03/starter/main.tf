@@ -12,7 +12,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-west-3" # Paris region
+  region = "us-east-1" # Paris region
 }
 
 # Generate a random suffix for unique bucket name

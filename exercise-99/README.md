@@ -173,7 +173,7 @@ terraform {
   backend "s3" {
     bucket         = "my-terraform-state-bucket"
     key            = "project/terraform.tfstate"
-    region         = "eu-west-3"
+    region         = "us-east-1"
     encrypt        = true
     dynamodb_table = "terraform-state-lock"
   }
@@ -239,7 +239,7 @@ terraform init -migrate-state
 terraform {
   backend "s3" {
     # Valeurs communes
-    region         = "eu-west-3"
+    region         = "us-east-1"
     encrypt        = true
     dynamodb_table = "terraform-state-lock"
 
@@ -275,7 +275,7 @@ data "terraform_remote_state" "vpc" {
   config = {
     bucket = "my-terraform-state-bucket"
     key    = "vpc/terraform.tfstate"
-    region = "eu-west-3"
+    region = "us-east-1"
   }
 }
 
@@ -815,10 +815,10 @@ Pour importer beaucoup de ressources, utilisez des outils comme :
 # https://github.com/GoogleCloudPlatform/terraformer
 
 # Importer toutes les ressources S3
-terraformer import aws --resources=s3 --regions=eu-west-3
+terraformer import aws --resources=s3 --regions=us-east-1
 
 # Importer plusieurs types
-terraformer import aws --resources=s3,ec2_instance,vpc --regions=eu-west-3
+terraformer import aws --resources=s3,ec2_instance,vpc --regions=us-east-1
 ```
 
 **AWS2TF** :
@@ -1300,7 +1300,7 @@ pip install boto3
 cat > aws_ec2.yml <<EOF
 plugin: aws_ec2
 regions:
-  - eu-west-3
+  - us-east-1
 keyed_groups:
   - key: tags.Role
     prefix: role
@@ -1622,7 +1622,7 @@ func TestS3Bucket(t *testing.T) {
 
     // Récupérer les outputs
     bucketID := terraform.Output(t, terraformOptions, "bucket_id")
-    region := "eu-west-3"
+    region := "us-east-1"
 
     // Vérifications
     assert.NotEmpty(t, bucketID)

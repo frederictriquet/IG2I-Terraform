@@ -43,14 +43,14 @@ Les **variables** Terraform permettent de rendre le code paramétrable et réuti
 variable "aws_region" {
   description = "AWS region where resources will be created"
   type        = string
-  default     = "eu-west-3" # ou autre, selon ce que vous avez choisi précédemment
+  default     = "us-east-1" # ou autre, selon ce que vous avez choisi précédemment
 }
 ```
 
 3. Utilisez cette variable dans `main.tf` :
 ```hcl
 provider "aws" {
-  region = var.aws_region  # Au lieu de "eu-west-3"
+  region = var.aws_region  # Au lieu de "us-east-1"
 }
 ```
 
@@ -155,7 +155,7 @@ resource "aws_s3_bucket" "my_bucket" {
 
 1. Créez un fichier `terraform.tfvars` :
 ```hcl
-aws_region     = "eu-west-3"
+aws_region     = "us-east-1"
 bucket_prefix  = "my-awesome-bucket"
 environment    = "Development"
 

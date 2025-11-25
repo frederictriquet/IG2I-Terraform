@@ -110,7 +110,7 @@ resource "aws_s3_bucket_public_access_block" "conditional" {
 variable "aws_region" {
   description = "AWS region"
   type        = string
-  default     = "eu-west-3"
+  default     = "us-east-1"
 }
 
 variable "bucket_prefix" {
@@ -326,7 +326,7 @@ resource "aws_s3_bucket_cors_configuration" "conditional" {
 3. Créez `terraform.tfvars` avec des règles :
 
 ```hcl
-aws_region = "eu-west-3"
+aws_region = "us-east-1"
 environment = "dev"
 bucket_prefix = "ig2i-ex07"
 

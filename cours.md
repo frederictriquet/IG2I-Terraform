@@ -1095,7 +1095,7 @@ terraform {
   backend "s3" {
     bucket = "mon-bucket-terraform-state"
     key    = "network/terraform.tfstate"
-    region = "eu-west-3"
+    region = "us-east-1"
   }
 }
 
@@ -1123,7 +1123,7 @@ data "terraform_remote_state" "network" {
   config = {
     bucket = "mon-bucket-terraform-state"
     key    = "network/terraform.tfstate"
-    region = "eu-west-3"
+    region = "us-east-1"
   }
 }
 
